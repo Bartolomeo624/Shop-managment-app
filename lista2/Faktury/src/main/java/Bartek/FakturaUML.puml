@@ -1,0 +1,79 @@
+@startuml
+!define LIGHTGREEN
+!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+
+class Artykul {
+# String nazwa
+# String kod
+# String jednostka
+# double VAT
+# double cena_netto
+# double cena_brutto
+
+# double round(double value, int places)
+}
+
+class Towar {
+- Artykul art
++ double ilosc
++ double wartosc_netto
++ double wartosc_brutto
+}
+
+class BazaArtykulow {
++ Arraylist<Artykul> daneArt
++ Arraylist<String> nazwyArt
+
+- void dodaj_artykul(Artykul art)
+}
+
+
+class Firma {
+- String nazwa_firmy
+- String adres
+- String kod_pocztowy
+- String miasto
+- String NIP
+
+getters()
+settters()
+}
+
+class Faktura {
+- String numer_faktury
+- String miejsce_wystawienia
+- String data_wystawienia
+- String data_zakonczenia
+- String termin_platnosci
+- String forma_platnosci
+- Firma klient
+- Firma sprzedawca
+- ArrayList<Towar> towary
+
++ void drukuj_fakture()
++ String getNumer_faktury()
+}
+
+class GUIFaktury {
+- ArrayList<Faktura> listaFaktur
+- ArrayList<String> listaNrFaktur
+
++ void start(Stage primaryStage)
+}
+
+class GUIOkno {
+- BazaArtykulow baza
+
++ Faktura display()
+}
+
+
+/'note left: klasa z metodą szyfrującą \n wpisany tekst za pomocą \n szyfru cezara
+Main --> Cezar : wywołuje \nfunkcję\n cypher'/
+
+Artykul --|> Towar : extends
+BazaArtykulow -- Artykul :uses
+Faktura -- Firma: uses
+Faktura -- Towar: uses
+GUIFaktury -- GUIOkno
+@enduml
