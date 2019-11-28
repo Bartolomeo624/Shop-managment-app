@@ -26,8 +26,7 @@ public class Cezar {
                 output[i] = letters[index + 1];
             }
         }
-        //return output.toString();
-        //final String result = new String(output);
+
         return new String(output);
     }
 }
